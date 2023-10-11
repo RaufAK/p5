@@ -11,17 +11,32 @@ import './userDetail.css';
 class UserDetail extends React.Component {
   constructor(props) {
     super(props);
+      this.state = {
+          user: null,
+      };
   }
 
+  componentDidMount() {
+      const userID = this.props.match.params.userId;
+      const user = this.props.match.params.userId;
+      this.setState({ user });
+  }
+
+
   render() {
+    const { user } = this.state;
     return (
-      <Typography variant="body1">
-        This should be the UserDetail view of the PhotoShare app. Since
-        it is invoked from React Router the params from the route will be
-        in property match. So this should show details of user:
-        {this.props.match.params.userId}. You can fetch the model for the
-        user from window.models.userModel(userId).
-      </Typography>
+        <div>
+            <Typography variant={"h4"}>
+                User Details
+            </Typography>
+            <Typography variant={"body1"}>
+                Name: {user.first_name} {user.last_name}
+                Location: {user.location}
+                Description: {user.description}
+                Occupation: {user.occupation}
+            </Typography>
+        </div>
     );
   }
 }
