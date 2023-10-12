@@ -1,34 +1,38 @@
-import React from 'react';
-import {
-  Typography
-} from '@mui/material';
-import './userPhotos.css';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import FetchModel from '../../lib/fetchModelData';
 
+const UserPhotos = () => {
+    const { userId } = useParams();
+    const [photos, setPhotos] = useState([]);
 
-/**
- * Define UserPhotos, a React componment of project #5
- */
-class UserPhotos extends React.Component {
-  constructor(props) {
-    super(props);
+    useEffect(() => {
+        FetchModel(`/photosOfUser/${userId}`)
+            .then((response) => setPhotos(response.data))
+            .catch((error) => console.error(error));
+    }, [userId]);
 
-  }
-
-  render() {
     return (
-      <Typography variant="body1">
-      This should be the UserPhotos view of the PhotoShare app. Since
-      it is invoked from React Router the params from the route will be
-      in property match. So this should show details of user:
-      {this.props.match.params.userId}. You can fetch the model for the user from
-      window.models.photoOfUserModel(userId):
-        <Typography variant="caption">
-          {JSON.stringify(window.models.photoOfUserModel(this.props.match.params.userId))}
-        </Typography>
-      </Typography>
-
+        <div>
+            <h2>User Photos</h2>
+            {photos.map((photo) => (
+                <div key={photo._id}>
+                    <img src={`images/${photo.file_name}`} alt={`Photo by ${userId}`} />
+                    <p>Date: {photo.date_time}</p>
+                    <h3>Comments:</h3>
+                    {photo.comments.map((comment) => (
+                        <div key={comment._id}>
+                            <p>Date: {comment.date_time}</p>
+                            <p>
+                                User: <Link to={`/users/${comment.user._id}`}>{comment.user.first_name}</Link>
+                            </p>
+                            <p>Comment: {comment.comment}</p>
+                        </div>
+                    ))}
+                </div>
+            ))}
+        </div>
     );
-  }
-}
+};
 
 export default UserPhotos;

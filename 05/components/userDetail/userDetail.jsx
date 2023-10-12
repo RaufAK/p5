@@ -1,44 +1,26 @@
-import React from 'react';
-import {
-  Typography
-} from '@mui/material';
-import './userDetail.css';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import FetchModel from '../../lib/fetchModelData';
 
+const UserDetail = () => {
+    const { userId } = useParams();
+    const [user, setUser] = useState({});
 
-/**
- * Define UserDetail, a React component of project #5
- */
-class UserDetail extends React.Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-          user: null,
-      };
-  }
+    useEffect(() => {
+        FetchModel(`/user/${userId}`)
+            .then((response) => setUser(response.data))
+            .catch((error) => console.error(error));
+    }, [userId]);
 
-  componentDidMount() {
-      const userID = this.props.match.params.userId;
-      const user = this.props.match.params.userId;
-      this.setState({ user });
-  }
-
-
-  render() {
-    const { user } = this.state;
     return (
         <div>
-            <Typography variant={"h4"}>
-                User Details
-            </Typography>
-            <Typography variant={"body1"}>
-                Name: {user.first_name} {user.last_name}
-                Location: {user.location}
-                Description: {user.description}
-                Occupation: {user.occupation}
-            </Typography>
+            <h2>User Detail</h2>
+            <p>{`${user.first_name} ${user.last_name}`}</p>
+            <p>Location: {user.location}</p>
+            <p>Occupation: {user.occupation}</p>
+            <Link to={`/photos/${userId}`}>View Photos</Link>
         </div>
     );
-  }
-}
+};
 
 export default UserDetail;
