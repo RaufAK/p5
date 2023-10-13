@@ -1,0 +1,23 @@
+/* userDetail.css */
+
+/* Style the user detail container */
+.user-detail-container {
+    padding: 16px;
+}
+
+/* Style the button for navigating to user photos */
+.user-photos-button {
+    margin-top: 16px;
+    background-color: #1976D2;
+    color: #fff;
+}
+
+/* Style the text fields for user details */
+.user-detail-text-field {
+    margin-bottom: 16px;
+}
+
+/* Style the text area for the description */
+.user-description-text-area {
+    margin-bottom: 16px;
+}
