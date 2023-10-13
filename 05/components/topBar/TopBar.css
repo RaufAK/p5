@@ -1,4 +1,32 @@
+/* TopBar.css */
+
+/* Style the top bar (AppBar) */
 .topbar-appBar {
+  background-color: #1976D2; /* Change this to your desired background color */
   height: 60px;
   justify-content: center;
+}
+
+/* Style the toolbar within the top bar */
+.topbar-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style the main title */
+.topbar-title {
+  font-size: 24px;
+  color: #fff; /* Change this to your desired text color */
+}
+
+/* Style the main content text */
+.topbar-main-content {
+  font-size: 24px;
+  color: #fff; /* Change this to your desired text color */
+}
+
+/* Style the version information */
+.topbar-version {
+  font-size: 16px;
+  color: #fff; /* Change this to your desired text color */
 }
