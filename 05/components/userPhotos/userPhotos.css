@@ -1,0 +1,58 @@
+/* userPhotos.css */
+
+/* Style the container */
+.user-photos-container {
+    padding: 16px;
+}
+
+/* Style the "User Detail" button */
+.user-detail-button {
+    margin-bottom: 16px;
+}
+
+/* Style the photo date field */
+.photo-date {
+    width: 100%;
+}
+
+/* Style the image list */
+.image-list {
+    columns: 1;
+    gap: 8px;
+}
+
+/* Style the individual photo item */
+.image-item {
+    display: block;
+}
+
+/* Style the photo image */
+.photo-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Style the comment date field */
+.comment-date {
+    width: 100%;
+}
+
+/* Style the comment user */
+.comment-user {
+    width: 100%;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: #1976D2;
+    display: block;
+}
+
+/* Style the comment text */
+.comment-text {
+    width: 100%;
+}
+
+/* Style for no comments */
+.no-comments {
+    font-style: italic;
+    color: #888;
+}
