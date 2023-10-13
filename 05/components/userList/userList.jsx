@@ -1,25 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import FetchModel from '../../lib/fetchModelData';
+import React from 'react';
+import {
+  List,
+  ListItemButton,
+  ListItemText,
+}
+from '@mui/material';
+import './userList.css';
+import fetchModel from "../../lib/fetchModelData";
 
-const UserList = () => {
-    const [users, setUsers] = useState([]);
+/**
+ * Define UserList, a React component of project #5
+ */
+class UserList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+                users: undefined,
+                user_id: undefined
+            };
+    }
 
-    useEffect(() => {
-        FetchModel('/user/list')
-            .then((response) => setUsers(response.data))
-            .catch((error) => console.error(error));
-    }, []);
+    componentDidMount() {
+        this.handleUserListChange();
+    }
 
-    return (
+    componentDidUpdate() {
+        const new_user_id = this.props.match?.params.userId;
+        //console.log(new_user_id);
+        const current_user_id = this.state.user_id;
+        //console.log(current_user_id);
+        if (current_user_id  !== new_user_id){
+            this.handleUserChange(new_user_id);
+        }
+    }
+
+    handleUserChange(user_id){
+        this.setState({
+            user_id: user_id
+        });
+    }
+
+    handleUserListChange(){
+        fetchModel("/user/list")
+            .then((response) =>
+            {
+                this.setState({
+                    users: response.data
+                });
+            });
+    }
+
+  render() {
+    return this.state.users ?(
         <div>
-            <h2>User List</h2>
-            <ul>
-                {users.map((user) => (
-                    <li key={user._id}>{`${user.first_name} ${user.last_name}`}</li>
-                ))}
-            </ul>
+        <List component="nav">
+            {
+                this.state.users.map(user => (
+                <ListItemButton selected={this.state.user_id === user._id}
+                                key={user._id}
+                                divider={true}
+                                component="a" href={"#/users/" + user._id}>
+                    <ListItemText primary={user.first_name + " " + user.last_name} />
+                </ListItemButton>
+            ))
+            }
+        </List>
         </div>
+    ) : (
+        <div/>
     );
-};
+  }
+}
 
 export default UserList;
