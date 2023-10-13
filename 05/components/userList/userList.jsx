@@ -1,47 +1,25 @@
-import React from 'react';
-import {
-  Divider,
-  List,
-  ListItem, ListItemButton,
-  ListItemText,
-  Typography,
-}
-  from '@mui/material';
-import './userList.css';
+import React, { useEffect, useState } from 'react';
+import FetchModel from '../../lib/fetchModelData';
 
-/**
- * Define UserList, a React component of project #5
- */
-class UserList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: window.models.userListModel()
-    };
-  }
+const UserList = () => {
+    const [users, setUsers] = useState([]);
 
-    render() {
-        return (
-            <div>
-                <Typography variant="body1">
-                    This is the user list, which takes up 3/12 of the window.
-                    You can use Lists and Dividers to display your users like so:
-                </Typography>
-                <List component="users">
-                    {this.state.users.map(user => (
-                        <div key={user._id}>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemText primary={`${user.first_name} ${user.last_name}`} />
-                                </ListItemButton>
-                            </ListItem>
-                            <Divider />
-                        </div>
-                    ))}
-                </List>
-            </div>
-        );
-    }
-}
+    useEffect(() => {
+        FetchModel('/user/list')
+            .then((response) => setUsers(response.data))
+            .catch((error) => console.error(error));
+    }, []);
+
+    return (
+        <div>
+            <h2>User List</h2>
+            <ul>
+                {users.map((user) => (
+                    <li key={user._id}>{`${user.first_name} ${user.last_name}`}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 export default UserList;
