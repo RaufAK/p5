@@ -1,0 +1,40 @@
+/* userList.css */
+
+/* Style the list container */
+.user-list-container {
+    padding: 16px;
+}
+
+/* Style the list */
+.list {
+    width: 100%;
+}
+
+/* Style the list item button */
+.list-item-button {
+    text-align: left;
+    padding: 12px 16px;
+}
+
+/* Style the selected list item */
+.list-item-selected {
+    background-color: #1976D2;
+    color: #fff;
+}
+
+/* Style the list item text */
+.list-item-text {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style the list item divider */
+.list-item-divider {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Style the list item link */
+.list-item-link {
+    text-decoration: none;
+    color: inherit;
+}
