@@ -20,18 +20,18 @@
 var mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://localhost/project6", {
+mongoose.connect('mongodb://127.0.0.1/project6', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 // Get the magic models we used in the previous projects.
-var models = require("./modelData/photoApp.js").models;
+var models = require("/05/modelData/photoApp.js").models;
 
 // Load the Mongoose schema for Use and Photo
-var User = require("./schema/user.js");
-var Photo = require("./schema/photo.js");
-var SchemaInfo = require("./schema/schemaInfo.js");
+var User = require("/06/schema/user.js");
+var Photo = require("/06/schema/photo.js");
+var SchemaInfo = require("/06/schema/schemaInfo.js");
 
 var versionString = "1.0";
 
