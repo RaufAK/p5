@@ -1,0 +1,45 @@
+/* Styling for the main container */
+div {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Styling for the form container */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for text fields */
+.TextField-root {
+    margin-bottom: 15px;
+}
+
+/* Styling for buttons */
+Button {
+    margin-top: 10px;
+}
+
+/* Styling for accordion */
+.MuiAccordion-root {
+    margin-top: 15px;
+}
+
+/* Styling for accordion summary */
+.MuiAccordionSummary-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styling for accordion details */
+.MuiAccordionDetails-root {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for registration button inside accordion */
+.MuiAccordionDetails-root button {
+    margin-top: 10px;
+}
